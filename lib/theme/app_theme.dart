@@ -13,7 +13,7 @@ class AppTheme {
 
   final lightTheme = ThemeData(
       backgroundColor: Colors.white,
-      primaryColor: Colors.green,
+      primaryColor: Colors.black,
       primarySwatch: Colors.blue,
       brightness: Brightness.light);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/FavoriteWidget.dart';
 import 'package:flutter_app/PavlovaPage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MyHomePage extends StatelessWidget {
   final String tag;
@@ -9,7 +10,9 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //  start 定义 需要用到的 widget
     Widget titleSection = Container(
+      //定义  padding
       padding: const EdgeInsets.all(32.0),
       child: Row(
         children: <Widget>[
@@ -36,25 +39,32 @@ class MyHomePage extends StatelessWidget {
       ),
     );
 
-    Column buildButtonColumn(IconData icon, String label) {
+    //
+    Widget BuildButtonColumn(
+        IconData icon, String label, GestureTapCallback onTap) {
       Color color = Theme.of(context).primaryColor;
-      return new Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          new Icon(icon, color: color),
-          new Container(
-            margin: const EdgeInsets.only(top: 8.0),
-            child: new Text(
-              label,
-              style: new TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.w400,
-                color: color,
-              ),
-            ),
-          ),
-        ],
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+            color: Colors.red,
+            child: new Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                new Icon(icon, color: color),
+                new Container(
+                  margin: const EdgeInsets.only(top: 8.0),
+                  child: new Text(
+                    label,
+                    style: new TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w400,
+                      color: color,
+                    ),
+                  ),
+                ),
+              ],
+            )),
       );
     }
 
@@ -62,9 +72,15 @@ class MyHomePage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          buildButtonColumn(Icons.call, 'CALL'),
-          buildButtonColumn(Icons.near_me, 'ROUTE'),
-          buildButtonColumn(Icons.share, 'SHARE'),
+          BuildButtonColumn(Icons.call, 'CALL', () {
+            Fluttertoast.showToast(msg: "call");
+          }),
+          BuildButtonColumn(Icons.near_me, 'ROUTE', () {
+            Fluttertoast.showToast(msg: "ROUTE");
+          }),
+          BuildButtonColumn(Icons.share, 'SHARE', () {
+            Fluttertoast.showToast(msg: "SHARE");
+          }),
         ],
       ),
     );
@@ -94,11 +110,21 @@ Lake1 Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situat
         color: Colors.green,
         child: new Text('go to Pavlova',
             style: new TextStyle(color: Colors.white)));
+
+    //  start 定义 需要用到的 widget
+
+    //最后排放 各种  widget
     return Scaffold(
       appBar:
           AppBar(title: Text('Startup Name Generator'), actions: <Widget>[]),
       body: ListView(
         children: [
+          //https://flutterchina.club/animations/hero-animations/
+          // Hero指的是可以在路由(页面)之间“飞行”的widget。
+          //使用Flutter的Hero widget创建hero动画。
+          //将 hero从一个路由飞到另一个路由。
+          //将 hero 的形状从圆形转换为矩形，同时将其从一个路由飞到另一个路由的过程中进行动画处理。
+          //Flutter中的Hero widget实现了通常称为 共享元素转换 或 共享元素动画的动画风格。
           Hero(
             tag: tag ?? 'hero',
             child: Image.asset(
@@ -122,6 +148,6 @@ Lake1 Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situat
   }
 
   void _floatOnPress() {
-    print('press');
+    Fluttertoast.showToast(msg: "press");
   }
 }

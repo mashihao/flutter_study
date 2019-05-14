@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/locale/translations_delegate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Routes extends StatelessWidget {
+class Routes extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _Routes();
+  }
+}
+
+class _Routes extends State<Routes> {
   List<ListItem> listData;
 
+  //初始化数据
   void initData(BuildContext context) {
     listData = [];
     listData.add(ListItem(
@@ -48,6 +56,7 @@ class Routes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 加载数据
     initData(context);
 
     //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
@@ -57,11 +66,28 @@ class Routes extends StatelessWidget {
         title: Text('列表'),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return ListItemWidget(listData[index]);
-        },
-        itemCount: listData.length,
+      body: Column(
+        children: <Widget>[
+//          RaisedButton(
+//            child: Text("open new route"),
+//            onPressed: () {
+//              setState(() {
+//                initData(context);
+//              });
+//            },
+//          ),
+          Expanded(
+            flex: 1,
+            child: listData == null
+                ? Text("暂时没有数据")
+                : ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListItemWidget(listData[index]);
+                    },
+                    itemCount: listData.length,
+                  ),
+          ),
+        ],
       ),
     );
   }

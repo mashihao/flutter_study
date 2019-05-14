@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
         //静态路由,无法传参
         'route': (_) => Routes(),
         'randomWords': (_) => RandomWords(),
+        //主页面
         'Home': (_) => MyHomePage(),
         'Pavlova': (_) => PavlovaPage(),
         'Image': (_) => ImagePage(),
