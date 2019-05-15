@@ -69,13 +69,10 @@ class ImageState extends State<ImagePage> {
 
   Future _getData() async {
     print('开始请求');
+
     Dio dio = new Dio();
-    //Response response = await dio.get("http://api.douban.com/v2/movie/top250");
-    Response response = await dio
-        .post("http://test.hadoop.network/loan/get_supported_operators");
-    var data = response.data;
-    print(data);
-    print(data['data']);
+    Response response=await dio.get("https://www.1hai.cn/");
+    print(response.data);
 
     print('请求结束');
   }

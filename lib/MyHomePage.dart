@@ -10,6 +10,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     //  start 定义 需要用到的 widget
     Widget titleSection = Container(
       //定义  padding
@@ -34,18 +36,21 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
           ),
+          //喜欢组件
           FavoriteWidget()
         ],
       ),
     );
 
-    //
+    //上图下字 widget
     Widget BuildButtonColumn(
         IconData icon, String label, GestureTapCallback onTap) {
       Color color = Theme.of(context).primaryColor;
+      // 点击事件
       return GestureDetector(
         onTap: onTap,
         child: Container(
+          // 添加背景颜色，外部点击区域
             color: Colors.red,
             child: new Column(
               mainAxisSize: MainAxisSize.min,
@@ -70,10 +75,11 @@ class MyHomePage extends StatelessWidget {
 
     Widget buttonSection = Container(
       child: Row(
+        // 均匀分开
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           BuildButtonColumn(Icons.call, 'CALL', () {
-            Fluttertoast.showToast(msg: "call");
+            Fluttertoast.showToast(msg: "CALL");
           }),
           BuildButtonColumn(Icons.near_me, 'ROUTE', () {
             Fluttertoast.showToast(msg: "ROUTE");
@@ -85,6 +91,7 @@ class MyHomePage extends StatelessWidget {
       ),
     );
     Widget textSection = new Container(
+      // 左右两边间距
       padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 32.0),
       child: new Text(
         '''
@@ -99,7 +106,6 @@ Lake1 Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situat
       onPressed: _floatOnPress,
       tooltip: '长按显示',
       child: Icon(Icons.favorite),
-      backgroundColor: Colors.transparent,
     );
 
     RaisedButton btn = new RaisedButton(

@@ -94,19 +94,23 @@ class PavlovaState extends State<PavlovaPage> {
     var titleText =
         Text('ADSAD SA;DKJJ AS;KDA', style: TextStyle(fontSize: 22.0));
     var subTitle = Container(
+      color: Colors.red,
       padding: EdgeInsets.symmetric(vertical: 20.0),
       child: Text(
-          'aaaaaaaaaaadsa ;kasdlka;sda sdaljdh ljahd ashd kahs dkaj hsld hasljd hals hdah '),
+          'aaaaaaaa ',textAlign: TextAlign.start,),
     );
     var ratIcon = Container(
+      //上下左右 间距
         padding: new EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+        //  Columu  使用方式  https://www.jianshu.com/p/1d003ab6c278
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[titleText, subTitle, ratings, threeColumn],
         ));
     return Scaffold(
         appBar: AppBar(title: Text('Pavlova')),
         body: Container(
-          child: Column(
+          child: ListView(
             children: <Widget>[
               ratIcon,
               Hero(
